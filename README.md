@@ -1,6 +1,6 @@
 # fyndui
 
-## Project setup
+## Project Setup
 ```
 yarn install
 ```
