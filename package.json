@@ -1,11 +1,22 @@
 {
   "name": "fyndui",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "main": "./dist/fyndui.common.js",
+  "module": "./dist/fyndui.umd.js",
+  "files": [
+    "dist/*",
+    "src/*",
+    "public/*",
+    "*.json",
+    "*.js"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "build:lib": "vue-cli-service build --target lib --name fyndui src/index.js",
+    "clear": "rimraf dist"
   },
   "dependencies": {
     "core-js": "^3.8.3",
