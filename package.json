@@ -2,6 +2,7 @@
   "name": "fyndui",
   "version": "0.1.0",
   "private": false,
+  "author": {"name": "Ayush Yadav"},
   "main": "./dist/fyndui.common.js",
   "module": "./dist/fyndui.umd.js",
   "files": [
