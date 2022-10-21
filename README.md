@@ -29,7 +29,7 @@ export default {
 2. Global CSS To Be Written
 
 
-## Project setup
+## Project Setup
 ```
 yarn install
 ```
