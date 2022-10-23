@@ -1,1 +1,1 @@
-export {default as ButtonVue} from "./components/ButtonVue.vue"
+export {default as FyButton} from "./components/Buttons/FyButton.vue"
