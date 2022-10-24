@@ -1,12 +1,15 @@
 import FyButton from '../components/Buttons/FyButton.vue';
 
-// More on default export: https://storybook.js.org/docs/vue/writing-stories/introduction#default-export
 export default {
   title: 'Components/Button',
   component: FyButton,
-  // More on argTypes: https://storybook.js.org/docs/vue/api/argtypes
+
+
   argTypes: {
-    
+    size : {
+      control : {type: 'select'},
+      options: ['xs', 'md', 'lg', 'xl']
+    }
   },
 };
 
@@ -20,6 +23,7 @@ const Template = (args, { argTypes }) => ({
 export const Primary = Template.bind({});
 // More on args: https://storybook.js.org/docs/vue/writing-stories/args
 Primary.args = {
-  label: 'ButtonVue',
+  label: 'Button',
+  size:"xl"
 };
 
