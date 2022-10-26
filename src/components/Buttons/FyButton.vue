@@ -1,5 +1,4 @@
 <script>
-
 export default {
     name: 'fy-button',
     props: {
@@ -19,6 +18,14 @@ export default {
         size: {
             type: String,
             default: ''
+        },
+        fullwidth: {
+          type: Boolean,
+          default: false
+        },
+        backgroundColor: {
+          type: String,
+          default: "$ril-primary"
         }
     },
     methods: {
@@ -31,14 +38,18 @@ export default {
         styles () {
             return {
                textTransform: this.upperCase ? "uppercase" : "lowercase",
-
+               width: this.fullwidth ? "100%":"",
+               backgroundColor: this.backgroundColor,
+               borderColor: this.backgroundColor 
+               
+               
             }
 
         },
         classes () {
             return {
-                [`button-${this.size}`] : true
-            }
+                [`button-${this.size}`] : true,
+              }
         }
 
     }
@@ -65,6 +76,8 @@ export default {
   border-radius: 50px;
   border: 2px solid $ril-primary;
   min-width: 5rem;
+  display: inline-block;
+  margin: 0.5rem 0;
 
   &:hover {
     background-color: $ril-secondary;
@@ -80,17 +93,24 @@ export default {
 .button-xs {
   padding: 0 14px;
   height: 30px;
+  font-size: 12px;
 }
 .button-md {
   padding: 0 22px;
   height: 42px;
+  font-size: 14px;
 }
 .button-lg {
   padding: 0 26px;
   height: 50px;
+  font-size: 16px;
 }
 .button-xl {
   padding: 0 32px;
   height: 60px;
+  font-size: 20px;
+}
+.fullWidth {
+  width: 100%;
 }
 </style>
