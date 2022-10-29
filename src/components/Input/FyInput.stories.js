@@ -18,6 +18,13 @@ export default {
       options: ["xs", "sm", "md", "lg", "xl"],
     },
     disable: { control: "boolean" },
+    icon: {
+      control: "text",
+    },
+    iconPostion: {
+      control: { type: "inline-radio" },
+      options: { left: "icon-left", right: "icon-right" },
+    },
   },
 };
 
@@ -28,8 +35,3 @@ const Template = (args, { argTypes }) => ({
 });
 
 export const Primary = Template.bind({});
-
-export const Secondary = Template.bind({});
-Secondary.args = {
-  variant: "Filled",
-};

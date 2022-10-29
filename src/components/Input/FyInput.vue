@@ -2,16 +2,38 @@
   <div class="fy-input" :class="classObject">
     <label class="label">{{ label }}</label>
     <div class="inp-div">
-      <input class="inp-style" type="text" :placeholder="inputPlace" />
+      <div class="icon-div">
+        <v-icon
+          :name="icon"
+          class="icon-left"
+          v-if="icon !== '' && iconPostion === 'icon-left'"
+        />
+        <input
+          class="inp-style"
+          :style="inpStyle"
+          type="text"
+          :placeholder="placeholder"
+          :disabled="disable"
+        />
+
+        <v-icon
+          :name="icon"
+          class="icon-right"
+          v-if="icon !== '' && iconPostion === 'icon-right'"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { boolean } from "yargs";
-
+import "vue-awesome/icons";
+import Icon from "vue-awesome/components/Icon";
 export default {
   name: "fy-input",
+  components: {
+    "v-icon": Icon,
+  },
   props: {
     variant: {
       type: String,
@@ -34,8 +56,16 @@ export default {
       default: "sm",
     },
     disable: {
-      type: boolean,
+      type: Boolean,
       default: false,
+    },
+    icon: {
+      type: String,
+      default: "",
+    },
+    iconPostion: {
+      type: String,
+      default: "icon-left",
     },
   },
   computed: {
@@ -43,7 +73,27 @@ export default {
       return {
         Default: this.variant == "Default",
         Filled: this.variant == "Filled",
+        Icon: this.icon !== "",
+        disable: this.disable ? "disable" : "",
+        "w-xs": this.size === "xs",
+        "w-md": this.size === "md",
+        "w-sm": this.size === "sm",
+        "w-lg": this.size === "lg",
+        "w-xl": this.size === "xl",
       };
+    },
+    inpStyle() {
+      if (this.iconPostion === "icon-right") {
+        return {
+          "padding-right": "25px",
+        };
+      } else if (this.iconPostion === "icon-left") {
+        return {
+          "padding-left": "25px",
+        };
+      } else {
+        return "";
+      }
     },
   },
 };
@@ -55,10 +105,10 @@ export default {
 .fy-input {
   display: flex;
   flex-direction: column;
-
-  &.primary {
+  font-size: 14px;
+  &.Default {
     .label {
-      color: rgba(0, 0, 0, 0.65);
+      color: black;
     }
     .inp-style {
       background: transparent;
@@ -69,42 +119,63 @@ export default {
       background: transparent;
       outline: 0;
       height: 23px;
+      border-color: rgba(0, 0, 0, 0.65);
+    }
+    .inp-style:focus {
       border-color: $ril-primary;
-      width: 130px;
+    }
+
+    &.Icon {
+      .icon-div {
+        display: flex;
+        align-items: center;
+        position: relative;
+        width: 180px;
+      }
+      .icon-left {
+        position: absolute;
+      }
+
+      .icon-right {
+        position: absolute;
+        right: 20px;
+      }
+    }
+
+    &.disable {
+      .label {
+        color: #dee2e6;
+      }
+      .inp-style {
+        border-color: #dee2e6;
+      }
+      .icon-left,
+      .icon-right {
+        fill: #dee2e6;
+      }
+
+      input,
+      input::placeholder {
+        color: #dee2e6;
+        opacity: 1;
+      }
     }
   }
-  &.Filled {
-    background-color: $ril-primary;
-    border-radius: 20px;
-    padding: 7px;
 
-    .label {
-      display: none;
-    }
-    .inp-div {
-      display: flex;
-      box-sizing: border-box;
-      align-items: center;
-      padding: 0px 10px;
-      gap: 5px;
-    }
-    .inp-style {
-      font-size: 16px;
-      font-weight: 500;
-      text-overflow: ellipsis;
-      border: none;
-      background-color: $ril-primary;
-      padding: 5px;
-      width: 100%;
-      color: #fff;
-      outline-width: 0;
-    }
-    input::placeholder {
-      color: white;
-    }
-    input:focus::placeholder {
-      color: #748ffc;
-    }
+  &.Filled {
+  }
+
+  &.Unstyled {
+  }
+
+  &.w-xs {
+    font-size: 12px;
+    min-height: 30px;
+  }
+
+  &.w-sm {
+    font-size: 14px;
+    min-height: 36px;
   }
 }
 </style>
