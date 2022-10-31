@@ -23,7 +23,7 @@ export default {
     },
     iconPostion: {
       control: { type: "inline-radio" },
-      options: { left: "icon-left", right: "icon-right" },
+      options: { left: "icon-left", right: "icon-right", none: "" },
     },
   },
 };

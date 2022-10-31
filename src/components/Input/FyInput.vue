@@ -106,6 +106,7 @@ export default {
   display: flex;
   flex-direction: column;
   font-size: 14px;
+  width: 180px;
   &.Default {
     .label {
       color: black;
