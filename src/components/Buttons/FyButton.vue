@@ -19,13 +19,18 @@ export default {
             type: String,
             default: ''
         },
-        fullwidth: {
-          type: Boolean,
-          default: false
-        },
+        
         backgroundColor: {
           type: String,
           default: "$ril-primary"
+        },
+        variant: {
+            type: String,
+            default : "primary"
+        },
+        fullsize: {
+          type: Boolean,
+          default: false
         }
     },
     methods: {
@@ -38,9 +43,11 @@ export default {
         styles () {
             return {
                textTransform: this.upperCase ? "uppercase" : "lowercase",
-               width: this.fullwidth ? "100%":"",
+               width: this.fullsize ? "100%": "",
                backgroundColor: this.backgroundColor,
-               borderColor: this.backgroundColor 
+               borderColor: this.backgroundColor,
+              
+              
                
                
             }
@@ -49,6 +56,7 @@ export default {
         classes () {
             return {
                 [`button-${this.size}`] : true,
+                [`${this.variant}`] : this.variant === "primary" ? false :  true
               }
         }
 
@@ -59,9 +67,9 @@ export default {
 }
 </script>
 <template>
-  <button :style="styles" :class="classes" type="button" @click="onClick" class="fyButton">
-    {{ label }}
-  </button>
+  <div  :style="styles" :class="classes"  @click="onClick" class="fyButton">
+    <slot>{{label}}</slot>
+  </div>
 </template>
 
 <style lang="scss">
@@ -71,13 +79,51 @@ export default {
   color: white;
   padding: 0 18px;
   font-weight: bold;
+  width: fit-content;
   height: 36px;
   background-color: $ril-primary;
   border-radius: 50px;
   border: 2px solid $ril-primary;
-  min-width: 5rem;
   display: inline-block;
   margin: 0.5rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.secondary  {
+    color: $ril-primary;
+    background-color: white;
+    border-color: #e0e0e0;
+
+    &:hover {
+        border-color: $ril-primary;
+        background-color: transparent;
+    }
+    &:active {
+        background-color: #9999ff;
+        color: $ril-primary;
+        
+    }
+  }
+
+  &.tertiary {
+    background-color: transparent;
+    color: $ril-primary;
+    border-color: transparent;
+
+    &:hover {
+        border-color: transparent;
+        background-color: #e8e8fd;
+    }
+    &:active {
+        background-color: #e8e8fd;
+        color: $ril-primary;
+        
+    }
+    &:focus {
+        background-color: #9999ff;
+    }
+  }
 
   &:hover {
     background-color: $ril-secondary;
@@ -85,11 +131,17 @@ export default {
   }
   &:focus {
     border: 2px solid black;
+
   }
   &:active {
     color: #9999ff;
   }
 }
+
+.icon  {
+    width: 56px;
+}
+
 .button-xs {
   padding: 0 14px;
   height: 30px;
@@ -111,6 +163,6 @@ export default {
   font-size: 20px;
 }
 .fullWidth {
-  width: 100%;
+  width: 160px;
 }
 </style>

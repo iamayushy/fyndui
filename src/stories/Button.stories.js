@@ -9,6 +9,10 @@ export default {
     size : {
       control : {type: 'select'},
       options: ['xs', 'md', 'lg', 'xl']
+    },
+    variant: {
+      control: {type: 'select'},
+      options: ['primary','secondary', 'tertiary']
     }
   },
 };
