@@ -70,13 +70,51 @@ export default {
   color: white;
   padding: 0 18px;
   font-weight: bold;
+  width: fit-content;
   height: 36px;
   background-color: $ril-primary;
   border-radius: 50px;
   border: 2px solid $ril-primary;
-  min-width: 5rem;
   display: inline-block;
   margin: 0.5rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.secondary  {
+    color: $ril-primary;
+    background-color: white;
+    border-color: #e0e0e0;
+
+    &:hover {
+        border-color: $ril-primary;
+        background-color: transparent;
+    }
+    &:active {
+        background-color: #9999ff;
+        color: $ril-primary;
+        
+    }
+  }
+
+  &.tertiary {
+    background-color: transparent;
+    color: $ril-primary;
+    border-color: transparent;
+
+    &:hover {
+        border-color: transparent;
+        background-color: #e8e8fd;
+    }
+    &:active {
+        background-color: #e8e8fd;
+        color: $ril-primary;
+        
+    }
+    &:focus {
+        background-color: #9999ff;
+    }
+  }
 
   &:hover {
     background-color: $ril-secondary;
@@ -84,11 +122,17 @@ export default {
   }
   &:focus {
     border: 2px solid black;
+
   }
   &:active {
     color: #9999ff;
   }
 }
+
+.icon  {
+    width: 56px;
+}
+
 .button-xs {
   padding: 0 14px;
   height: 30px;
@@ -110,6 +154,6 @@ export default {
   font-size: 20px;
 }
 .fullWidth {
-  width: 100%;
+  width: 160px;
 }
 </style>

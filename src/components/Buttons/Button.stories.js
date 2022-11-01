@@ -5,10 +5,10 @@ export default {
   component: FyButton,
 
   argTypes: {
-    size: {
-      control: { type: "select" },
-      options: ["xs", "md", "lg", "xl"],
-    },
+    size : {
+      control : {type: "select"},
+      options: ['xs', 'md', 'lg', 'xl']
+    }
   },
 };
 
