@@ -4,27 +4,23 @@ export default {
   title: "Components/Input",
   component: FyInput,
   argTypes: {
-    variant: {
-      control: { type: "select" },
-      options: ["Default", "Filled", "Unstyled"],
+    placeholder: {
+      control: {
+        type: "text",
+      },
     },
-    placeholder: { control: "text" },
-    radius: {
+    type: {
       control: { type: "inline-radio" },
-      options: ["xs", "sm", "md", "lg", "xl"],
+      options: ["text", "password", "email"],
     },
-    size: {
+    disable: {
       control: { type: "inline-radio" },
-      options: ["xs", "sm", "md", "lg", "xl"],
+      options: { true: 1, false: 0 },
     },
-    disable: { control: "boolean" },
-    icon: {
-      control: "text",
-    },
-    iconPostion: {
-      control: { type: "inline-radio" },
-      options: { left: "icon-left", right: "icon-right", none: "" },
-    },
+    iconLeft: { control: { type: "text" } },
+    iconRight: { control: { type: "text" } },
+    iconSize: { control: { type: "number" } },
+    // iconBothSide: { type: "boolean" },
   },
 };
 
@@ -35,3 +31,13 @@ const Template = (args, { argTypes }) => ({
 });
 
 export const Primary = Template.bind({});
+Primary.args = {
+  varient: "textinput",
+};
+
+export const Icon = Template.bind({});
+
+Icon.args = {
+  varient: "searchbar",
+  placeholder: "search",
+};

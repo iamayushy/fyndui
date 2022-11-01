@@ -1,182 +1,102 @@
 <template>
-  <div class="fy-input" :class="classObject">
-    <label class="label">{{ label }}</label>
-    <div class="inp-div">
-      <div class="icon-div">
-        <v-icon
-          :name="icon"
-          class="icon-left"
-          v-if="icon !== '' && iconPostion === 'icon-left'"
-        />
-        <input
-          class="inp-style"
-          :style="inpStyle"
-          type="text"
-          :placeholder="placeholder"
-          :disabled="disable"
-        />
-
-        <v-icon
-          :name="icon"
-          class="icon-right"
-          v-if="icon !== '' && iconPostion === 'icon-right'"
-        />
-      </div>
+  <div>
+    <div v-if="varient == 'textinput'">
+      <input :type="type" class="inputText" required :disabled="disable == 1" />
+      <span class="floating-label">{{ placeholder }}</span>
+    </div>
+    <div v-if="varient == 'searchbar'">
+      <FyInputIcon
+        :placeholder="placeholder"
+        :iconLeft="iconLeft"
+        :iconRight="iconRight"
+        :iconSize="iconSize"
+        :iconColor="iconColor"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import "vue-awesome/icons";
-import Icon from "vue-awesome/components/Icon";
+import FyInputIcon from "./FyInputIcon.vue";
 export default {
   name: "fy-input",
   components: {
-    "v-icon": Icon,
+    FyInputIcon,
   },
   props: {
-    variant: {
+    varient: {
       type: String,
-      default: "Default",
+      default: "textinput",
     },
-    label: {
+    type: {
       type: String,
-      default: "label",
+      default: "text",
     },
     placeholder: {
       type: String,
       default: "Placeholder",
     },
-    size: {
-      type: String,
-      default: "md",
-    },
-    radius: {
-      type: String,
-      default: "sm",
-    },
     disable: {
-      type: Boolean,
-      default: false,
+      type: Number,
+      default: 0,
     },
-    icon: {
+    iconLeft: {
       type: String,
       default: "",
     },
-    iconPostion: {
+    iconRight: {
       type: String,
-      default: "icon-left",
+      default: "",
     },
-  },
-  computed: {
-    classObject() {
-      return {
-        Default: this.variant == "Default",
-        Filled: this.variant == "Filled",
-        Icon: this.icon !== "",
-        disable: this.disable ? "disable" : "",
-        "w-xs": this.size === "xs",
-        "w-md": this.size === "md",
-        "w-sm": this.size === "sm",
-        "w-lg": this.size === "lg",
-        "w-xl": this.size === "xl",
-      };
+    iconColor: {
+      type: String,
     },
-    inpStyle() {
-      if (this.iconPostion === "icon-right") {
-        return {
-          "padding-right": "25px",
-        };
-      } else if (this.iconPostion === "icon-left") {
-        return {
-          "padding-left": "25px",
-        };
-      } else {
-        return "";
-      }
+    // iconBothSide: {
+    //   type: Boolean,
+    //   default: false,
+    // },
+    iconSize: {
+      type: Number,
     },
   },
 };
 </script>
 
 <style lang="scss">
-@import "../../styles/variables";
+input:focus ~ .floating-label,
+input:disabled ~ .floating-label,
+input:not(:focus):valid ~ .floating-label {
+  top: 9px;
+  bottom: 10px;
+  left: 24px;
+  font-size: 11px;
+  opacity: 1;
+}
 
-.fy-input {
-  display: flex;
-  flex-direction: column;
+.inputText {
   font-size: 14px;
-  width: 180px;
-  &.Default {
-    .label {
-      color: black;
-    }
-    .inp-style {
-      background: transparent;
-      border-width: 2px;
-      border-top: 0;
-      border-left: 0;
-      border-right: 0;
-      background: transparent;
-      outline: 0;
-      height: 23px;
-      border-color: rgba(0, 0, 0, 0.65);
-    }
-    .inp-style:focus {
-      border-color: $ril-primary;
-    }
+  width: 200px;
+  height: 35px;
+  padding-left: 7px;
+  padding-top: 10px;
+}
 
-    &.Icon {
-      .icon-div {
-        display: flex;
-        align-items: center;
-        position: relative;
-        width: 180px;
-      }
-      .icon-left {
-        position: absolute;
-      }
+.floating-label {
+  position: absolute;
+  pointer-events: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  left: 20px;
+  top: 18px;
+  transition: 0.2s ease all;
+  color: gray;
+}
 
-      .icon-right {
-        position: absolute;
-        right: 20px;
-      }
-    }
-
-    &.disable {
-      .label {
-        color: #dee2e6;
-      }
-      .inp-style {
-        border-color: #dee2e6;
-      }
-      .icon-left,
-      .icon-right {
-        fill: #dee2e6;
-      }
-
-      input,
-      input::placeholder {
-        color: #dee2e6;
-        opacity: 1;
-      }
-    }
-  }
-
-  &.Filled {
-  }
-
-  &.Unstyled {
-  }
-
-  &.w-xs {
-    font-size: 12px;
-    min-height: 30px;
-  }
-
-  &.w-sm {
-    font-size: 14px;
-    min-height: 36px;
-  }
+input:disabled ~ .floating-label {
+  top: 9px;
+  bottom: 10px;
+  left: 24px;
+  font-size: 11px;
+  opacity: 1;
 }
 </style>
