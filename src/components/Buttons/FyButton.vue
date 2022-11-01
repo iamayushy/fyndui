@@ -1,66 +1,75 @@
 <script>
 export default {
-  name: "fy-button",
-  props: {
-    label: {
-      type: String,
-      default: "Button",
-      required: true,
+    name: 'fy-button',
+    props: {
+        label: {
+            type: String,
+            default: "Button",
+            required: true
+        },
+        disabled: {
+            type: Boolean,
+            default: false
+        },
+        upperCase : {
+            type : Boolean,
+            default: false
+        },
+        size: {
+            type: String,
+            default: ''
+        },
+        
+        backgroundColor: {
+          type: String,
+          default: "$ril-primary"
+        },
+        variant: {
+            type: String,
+            default : "primary"
+        },
+        fullsize: {
+          type: Boolean,
+          default: false
+        }
     },
-    disabled: {
-      type: Boolean,
-      default: false,
+    methods: {
+        onClick () {
+            this.$emit('onClick')
+        }
     },
-    upperCase: {
-      type: Boolean,
-      default: false,
-    },
-    size: {
-      type: String,
-      default: "",
-    },
-    fullwidth: {
-      type: Boolean,
-      default: false,
-    },
-    backgroundColor: {
-      type: String,
-      default: "$ril-primary",
-    },
-  },
-  methods: {
-    onClick() {
-      this.$emit("onClick");
-    },
-  },
 
-  computed: {
-    styles() {
-      return {
-        textTransform: this.upperCase ? "uppercase" : "lowercase",
-        width: this.fullwidth ? "100%" : "",
-        backgroundColor: this.backgroundColor,
-        borderColor: this.backgroundColor,
-      };
-    },
-    classes() {
-      return {
-        [`button-${this.size}`]: true,
-      };
-    },
-  },
-};
+    computed: {
+        styles () {
+            return {
+               textTransform: this.upperCase ? "uppercase" : "lowercase",
+               width: this.fullsize ? "100%": "",
+               backgroundColor: this.backgroundColor,
+               borderColor: this.backgroundColor,
+              
+              
+               
+               
+            }
+
+        },
+        classes () {
+            return {
+                [`button-${this.size}`] : true,
+                [`${this.variant}`] : this.variant === "primary" ? false :  true
+              }
+        }
+
+    }
+
+
+
+}
 </script>
 <template>
-  <button
-    :style="styles"
-    :class="classes"
-    type="button"
-    @click="onClick"
-    class="fyButton"
-  >
-    {{ label }}
-  </button>
+  <div  :style="styles" :class="classes"  @click="onClick" class="fyButton">
+    <slot>{{label}}</slot>
+  </div>
 </template>
 
 <style lang="scss">
