@@ -2,11 +2,14 @@
     <div id="app">
       <h1>Checking The Component </h1>
       <div >
-      <FyButton fullwidth upper-case size="xl"/>
-      <FyButton fullwidth />
+      <FyButton fullwidth upper-case size="xl">
+      Bakaman Ka Papa  
+      </FyButton>
+      <FyButton>Njhgg</FyButton>
+
       <FyCard class="box">
         <template  v-slot:header>
-          <fy-image  desc="anti-imae" :src="imageLink" fit="cover" height="240px"/>
+          <fy-image  desc="anti-imae" :src="imageLink" fit="cover" />
         </template>
         <template v-slot:content>
           <h3>With Love, From Jio </h3>
@@ -15,8 +18,8 @@
 
         <template v-slot:actions>
           <section>
-            <FyButton variant="secondary" size="xl" label="Get Now" fullwidth>
-
+            <FyButton variant="secondary"  size="lg" fullsize>
+              Some of the text and get update
             </FyButton>
           </section>
         </template>
@@ -57,18 +60,12 @@ import FyImage from './components/Image/FyImage.vue';
   </script>
   
   <style>
-  #app {
-    font-family: "Avenir", Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: #2c3e50;
-  }
+
   .box {
-    width: fit-content;
+    width: 800px;
     height: fit-content;
     border-radius: 32px;
-    box-shadow: 6px 6px 6px black;
-
+    box-shadow: 6px 6px 6px rgb(196, 196, 196);
 
 
   }
