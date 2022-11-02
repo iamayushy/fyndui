@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main-div">
     <div v-if="varient == 'textinput'">
       <input :type="type" class="inputText" required :disabled="disable == 1" />
       <span class="floating-label">{{ placeholder }}</span>
@@ -62,7 +62,11 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+.main-div {
+  position: relative;
+}
+
 input:focus ~ .floating-label,
 input:disabled ~ .floating-label,
 input:not(:focus):valid ~ .floating-label {
