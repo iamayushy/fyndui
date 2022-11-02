@@ -31,6 +31,10 @@ export default {
         fullsize: {
           type: Boolean,
           default: false
+        },
+        width: {
+          type: String,
+          default: '160px'
         }
     },
     methods: {
@@ -46,49 +50,47 @@ export default {
                width: this.fullsize ? "100%": "",
                backgroundColor: this.backgroundColor,
                borderColor: this.backgroundColor,
-              
-              
                
-               
-            }
-
-        },
-        classes () {
-            return {
-                [`button-${this.size}`] : true,
-                [`${this.variant}`] : this.variant === "primary" ? false :  true
               }
-        }
+              
+          },
+          
+          classes () {
+              return {
+                  [`button-${this.size}`] : true,
+                  [`${this.variant}`] : this.variant === "primary" ? false :  true,
+                  "disable-btn" : this.disabled
+                }
+          }
+  
+      }
+               
+               
 
-    }
 
 
 
 }
 </script>
 <template>
-  <div  :style="styles" :class="classes"  @click="onClick" class="fyButton">
+  <button  :style="styles" :class="classes"  @click="onClick" class="fyButton">
     <slot>{{label}}</slot>
-  </div>
+  </button>
 </template>
 
 <style lang="scss">
 @import "../../styles/variables";
 .fyButton {
-  border: none;
+  position: relative;
   color: white;
-  padding: 0 18px;
   font-weight: bold;
-  width: fit-content;
   height: 36px;
   background-color: $ril-primary;
   border-radius: 50px;
   border: 2px solid $ril-primary;
-  display: inline-block;
-  margin: 0.5rem 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: v-bind(width);
+  
+  
 
   &.secondary  {
     color: $ril-primary;
@@ -162,7 +164,9 @@ export default {
   height: 60px;
   font-size: 20px;
 }
-.fullWidth {
-  width: 160px;
+.disable-btn {
+  pointer-events: none;
+  opacity: 0.4;
+  cursor: pointer;
 }
 </style>

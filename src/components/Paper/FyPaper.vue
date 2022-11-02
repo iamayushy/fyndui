@@ -19,6 +19,7 @@
     background-color: white;
     border-radius: 32px;
     width: 584px;
+    margin: 1rem;
     
     @media (max-width: $mobile) {
         width: 312px;
