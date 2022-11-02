@@ -51,22 +51,22 @@ export default {
                backgroundColor: this.backgroundColor,
                borderColor: this.backgroundColor,
                
-              
-              
-               
-               
-            }
-
-        },
-        classes () {
-            return {
-                [`button-${this.size}`] : true,
-                [`${this.variant}`] : this.variant === "primary" ? false :  true,
-                "disable-btn" : this.disabled
               }
-        }
+              
+          },
+          
+          classes () {
+              return {
+                  [`button-${this.size}`] : true,
+                  [`${this.variant}`] : this.variant === "primary" ? false :  true,
+                  "disable-btn" : this.disabled
+                }
+          }
+  
+      }
+               
+               
 
-    }
 
 
 
@@ -74,7 +74,7 @@ export default {
 </script>
 <template>
   <button  :style="styles" :class="classes"  @click="onClick" class="fyButton">
-    <slot></slot>
+    <slot>{{label}}</slot>
   </button>
 </template>
 

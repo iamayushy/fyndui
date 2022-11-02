@@ -1,4 +1,4 @@
-import FyButton from "./FyButton.vue";
+import FyButton from "../components/Buttons/FyButton.vue";
 
 export default {
   title: "Components/Button",
@@ -8,6 +8,10 @@ export default {
     size : {
       control : {type: "select"},
       options: ['xs', 'md', 'lg', 'xl']
+    },
+    variant: {
+      control : {type: "select"},
+      options: ['primary', 'secondary', 'tertiary']
     }
   },
 };

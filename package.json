@@ -1,6 +1,6 @@
 {
   "name": "fyndui",
-  "version": "0.1.85",
+  "version": "0.1.86",
   "private": false,
   "author": {
     "name": "Ayush Yadav"
@@ -21,7 +21,8 @@
     "build:lib": "vue-cli-service build --target lib --name fyndui src/index.js",
     "clean:build": "rimraf dist && npm run build:lib",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "clean": "rimraf dist"
   },
   "dependencies": {
     "core-js": "^3.8.3",
